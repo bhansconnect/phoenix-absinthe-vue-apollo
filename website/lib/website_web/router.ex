@@ -11,6 +11,7 @@ defmodule WebsiteWeb.Router do
 
   pipeline :api do
     plug(:accepts, ["json"])
+    plug(Website.Context)
   end
 
   scope "/api" do
@@ -22,8 +23,7 @@ defmodule WebsiteWeb.Router do
         Absinthe.Plug.GraphiQL,
         schema: WebsiteWeb.Schema,
         analyze_complexity: true,
-        max_complexity: 200,
-        interface: :simple
+        max_complexity: 200
       )
     end
 

@@ -1,4 +1,4 @@
-defmodule Website.Repo.Migrations.CreatePosts do
+defmodule Website.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

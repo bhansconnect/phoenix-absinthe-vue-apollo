@@ -47,7 +47,8 @@ defmodule Website.Mixfile do
       {:faker, "~> 0.9", only: [:dev, :test]},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
-      {:argon2_elixir, "~> 1.2"}
+      {:argon2_elixir, "~> 1.2"},
+      {:slugify, "~> 1.1"}
     ]
   end
 

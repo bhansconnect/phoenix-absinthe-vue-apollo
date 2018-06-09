@@ -7,10 +7,16 @@ defmodule Website.Accounts.User do
     field(:password, :string, virtual: true)
     field(:password_hash, :string)
     field(:username, :string)
+    field(:token, :string)
 
     has_many(:posts, Website.Posts.Post, foreign_key: :user_id)
 
     timestamps()
+  end
+
+  def store_token_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:token])
   end
 
   @doc false

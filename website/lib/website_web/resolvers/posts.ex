@@ -1,4 +1,6 @@
 defmodule WebsiteWeb.Resolvers.Posts do
+  import Slug, only: [slugify: 2]
+
   def posts(_, _, _) do
     {:ok, Website.Posts.list_posts()}
   end
@@ -17,7 +19,12 @@ defmodule WebsiteWeb.Resolvers.Posts do
     end
   end
 
-  def add_post(_, %{id: id}, _) do
-    {:ok, nil}
+  def add_post(_, %{title: title, content: content}, %{context: %{current_user: current_user}}) do
+    Website.Posts.create_post(%{
+      user_id: current_user.id,
+      title: title,
+      slug: slugify(title, separator: ?_, lowercase: true),
+      content: content
+    })
   end
 end
