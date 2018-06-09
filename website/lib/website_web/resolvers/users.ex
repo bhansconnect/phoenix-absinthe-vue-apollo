@@ -5,6 +5,10 @@ defmodule WebsiteWeb.Resolvers.Users do
     {:ok, Website.Accounts.list_users()}
   end
 
+  def user(%{user_id: id}, _, _) do
+    {:ok, Website.Accounts.get_user(id)}
+  end
+
   def user(_, %{id: id}, _) do
     case Website.Accounts.get_user(id) do
       nil ->
