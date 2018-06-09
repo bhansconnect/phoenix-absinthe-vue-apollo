@@ -1,16 +1,3 @@
-// Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
-// config.paths.watched in "brunch-config.js".
-//
-// However, those files will only be executed if
-// explicitly imported. The only exception are files
-// in vendor, which are never wrapped in imports and
-// therefore are always executed.
-
-// Import dependencies
-//
-// If you no longer want to use a dependency, remember
-// to also remove its path from "config.paths.watched".
 import "phoenix_html"
 
 // Import local files
@@ -22,12 +9,44 @@ import "phoenix_html"
 
 import Vue from 'vue'
 import 'vueify/lib/insert-css'
-import Hello from './vue/hello.vue'
+import {
+    ApolloClient
+} from 'apollo-client'
+import {
+    HttpLink
+} from 'apollo-link-http'
+import {
+    InMemoryCache
+} from 'apollo-cache-inmemory'
+import VueApollo from 'vue-apollo'
+import App from './App.vue'
+import router from './router.js'
 
+// install the vue plugin
+Vue.use(VueApollo)
 
+const httpLink = new HttpLink({
+    // URL to graphql server, you should use an absolute URL here
+    uri: 'http://localhost:4000/api'
+})
+
+// create the apollo client
+const apolloClient = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache()
+})
+
+const apolloProvider = new VueApollo({
+    defaultClient: apolloClient
+})
+
+// update Vue instance by adding `apolloProvider`
 new Vue({
-    el: '#main',
+    el: '#app',
+    router,
+    apolloProvider,
+    template: '<App/>',
     components: {
-        Hello
+        App
     }
-});
+})
