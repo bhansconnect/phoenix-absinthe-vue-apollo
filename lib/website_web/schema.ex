@@ -10,6 +10,9 @@ defmodule WebsiteWeb.Schema do
     field :all_users, list_of(:user) do
       middleware(Website.Web.Authentication)
       resolve(&Resolvers.Users.users/3)
+      # complexity fn %{limit: limit}, child_complexity ->
+      #  limit * child_complexity
+      # end
     end
 
     @desc "Get a single user"
