@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home.vue'
-/*import SignUp from '@/components/Admin/SignUp'
-import LogIn from '@/components/Admin/LogIn'
+import Home from '@/components/Home'
+import SignUp from '@/components/Admin/SignUp'
+/*import LogIn from '@/components/Admin/LogIn'
 import Users from '@/components/Admin/Users'
 import UserDetails from '@/components/Admin/UserDetails'
 import Posts from '@/components/Admin/Posts'
@@ -17,12 +17,12 @@ export default new Router({
             name: 'Home',
             component: Home
         },
-        /*{
+        {
             path: '/signup',
             name: 'SignUp',
             component: SignUp
         },
-        {
+        /*{
             path: '/login',
             name: 'LogIn',
             component: LogIn

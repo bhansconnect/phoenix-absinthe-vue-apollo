@@ -1,0 +1,19 @@
+{
+    "presets": ["env"],
+    "plugins": [
+        ["babel-plugin-root-import", {
+            "rootPathPrefix": "@",
+            "rootPathSuffix": "js"
+        }]
+    ],
+    "env": {
+        "production": {
+            "plugins": [
+                ["babel-plugin-root-import", {
+                    "rootPathPrefix": "@",
+                    "rootPathSuffix": "js"
+                }]
+            ]
+        }
+    }
+}

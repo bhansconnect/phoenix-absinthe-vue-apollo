@@ -25,12 +25,12 @@ export default {
     return {
       allPosts: []
     };
-  },
-  apollo: {
+  }
+  /*apollo: {
     // fetch all posts
     allPosts: {
-      //query: ALL_POSTS_QUERY
+      query: ALL_POSTS_QUERY
     }
-  }
+  }*/
 };
 </script>
