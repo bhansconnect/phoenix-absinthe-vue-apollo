@@ -38,6 +38,8 @@ defmodule Website.Posts do
   def get_post!(id), do: Repo.get!(Post, id)
   def get_post(id), do: Repo.get(Post, id)
 
+  def get_post_by_slug(slug), do: Repo.get_by(Post, slug: slug)
+
   def get_user_posts(user_id) do
     Post
     |> Ecto.Query.where(user_id: ^user_id)

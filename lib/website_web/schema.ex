@@ -16,7 +16,7 @@ defmodule WebsiteWeb.Schema do
     end
 
     @desc "Get a single user"
-    field :fetch_user, :user do
+    field :user, :user do
       middleware(Website.Web.Authentication)
       arg(:id, non_null(:id))
       resolve(&Resolvers.Users.user/3)
@@ -26,6 +26,13 @@ defmodule WebsiteWeb.Schema do
     field :all_posts, list_of(:post) do
       middleware(Website.Web.Authentication)
       resolve(&Resolvers.Posts.posts/3)
+    end
+
+    @desc "Get a single post"
+    field :post, :post do
+      middleware(Website.Web.Authentication)
+      arg(:slug, non_null(:string))
+      resolve(&Resolvers.Posts.post/3)
     end
 
     @desc "Get a single post"

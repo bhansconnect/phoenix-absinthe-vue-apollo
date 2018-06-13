@@ -9,10 +9,10 @@ defmodule WebsiteWeb.Resolvers.Posts do
     {:ok, Website.Posts.get_user_posts(user_id)}
   end
 
-  def post(_, %{id: id}, _) do
-    case Website.Posts.get_post(id) do
+  def post(_, %{slug: slug}, _) do
+    case Website.Posts.get_post_by_slug(slug) do
       nil ->
-        {:error, "Post ID #{id} not found"}
+        {:error, "Post #{slug} not found"}
 
       post ->
         {:ok, post}

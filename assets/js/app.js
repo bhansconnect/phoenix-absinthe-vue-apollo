@@ -30,9 +30,24 @@ const httpLink = new HttpLink({
     uri: 'http://localhost:4000/api'
 })
 
-// create the apollo client
+const authLink = setContext((_, {
+    headers
+}) => {
+    // get the authentication token from localstorage if it exists
+    const token = localStorage.getItem('blog-app-token')
+
+    // return the headers to the context so httpLink can read them
+    return {
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : null
+        }
+    }
+})
+
+// update apollo client as below
 const apolloClient = new ApolloClient({
-    link: httpLink,
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache()
 })
 
@@ -50,3 +65,7 @@ new Vue({
         App
     }
 })
+
+import {
+    setContext
+} from 'apollo-link-context'
