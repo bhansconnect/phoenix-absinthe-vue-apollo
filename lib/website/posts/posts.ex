@@ -51,16 +51,16 @@ defmodule Website.Posts do
 
   ## Examples
 
-      iex> create_post(%{field: value})
+      iex> create_post(user, %{field: value})
       {:ok, %Post{}}
 
-      iex> create_post(%{field: bad_value})
+      iex> create_post(user, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(attrs \\ %{}) do
-    %Post{}
-    |> Post.changeset(attrs)
+  def create_post(user, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:posts, attrs)
     |> Repo.insert()
   end
 

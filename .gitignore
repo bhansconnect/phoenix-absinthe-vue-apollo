@@ -1,3 +1,7 @@
+# Ide
+.elixir_ls
+.idea
+
 /_build
 /cover
 /deps
