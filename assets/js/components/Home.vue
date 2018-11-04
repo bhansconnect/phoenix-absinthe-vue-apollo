@@ -1,7 +1,10 @@
 <template>
     <section class="section">
         <div class="columns">
-            <div class="column is-6 is-offset-3">
+            <div class="column is-3">
+                <Menu/>
+            </div>
+            <div class="column is-6">
                 <h1 class="title">Latest Posts</h1>
 
                 <h3
@@ -19,9 +22,13 @@
 
 <script>
 import { ALL_POSTS_QUERY } from "@/graphql";
+import Menu from "@/components/Menu";
 
 export default {
   name: "Home",
+  components: {
+    Menu
+  },
   data() {
     return {
       allPosts: []

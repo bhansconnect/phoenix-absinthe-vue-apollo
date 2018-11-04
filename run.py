@@ -24,7 +24,9 @@ if args.production:
     subprocess.call(['mix', 'deps.get', '--only', 'prod'])
     subprocess.call(['mix', 'compile'], env=prod_env)
     os.chdir('assets')
-    subprocess.call(['brunch', 'build', '--production'])
+    if not os.path.isdir('./node_module'):
+        subprocess.call(['npm', 'install'])
+    subprocess.call(['./node_modules/.bin/webpack', '--mode', 'production'])
     os.chdir('..')
     subprocess.call(['mix', 'phx.digest'])
     subprocess.call(['mix', 'ecto.migrate'], env=prod_env)
@@ -33,7 +35,9 @@ else:
     print('Running development server')
     subprocess.call(['mix', 'deps.get'])
     os.chdir('assets')
-    subprocess.call(['brunch', 'build'])
+    if not os.path.isdir('./node_modules'):
+        subprocess.call(['npm', 'install'])
+    #subprocess.call(['./node_modules/.bin/webpack', '--mode', 'development'])
     os.chdir('..')
     subprocess.call(['mix', 'ecto.migrate'])
     subprocess.call(['mix', 'phx.server'])

@@ -6,13 +6,11 @@ defmodule WebsiteWeb.Schema do
   import_types(__MODULE__.Types)
 
   query do
+
     @desc "Get all users"
     field :all_users, list_of(:user) do
       middleware(Website.Web.Authentication)
       resolve(&Resolvers.Users.users/3)
-      # complexity fn %{limit: limit}, child_complexity ->
-      #  limit * child_complexity
-      # end
     end
 
     @desc "Get a single user"
@@ -24,26 +22,27 @@ defmodule WebsiteWeb.Schema do
 
     @desc "Get all posts"
     field :all_posts, list_of(:post) do
-      middleware(Website.Web.Authentication)
+      #middleware(Website.Web.Authentication)
       resolve(&Resolvers.Posts.posts/3)
     end
 
     @desc "Get a single post"
     field :post, :post do
-      middleware(Website.Web.Authentication)
+      #middleware(Website.Web.Authentication)
       arg(:slug, non_null(:string))
       resolve(&Resolvers.Posts.post/3)
     end
 
     @desc "Get a single post"
     field :fetch_post, :post do
-      middleware(Website.Web.Authentication)
+      #middleware(Website.Web.Authentication)
       arg(:id, non_null(:id))
       resolve(&Resolvers.Posts.post/3)
     end
   end
 
   mutation do
+
     field :login, :session do
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))

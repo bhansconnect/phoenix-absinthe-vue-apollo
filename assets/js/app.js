@@ -19,7 +19,7 @@ import {
     InMemoryCache
 } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
-import App from '@/App'
+import App from '@/App.vue'
 import router from '@/router'
 
 // install the vue plugin

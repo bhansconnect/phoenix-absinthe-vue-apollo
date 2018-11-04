@@ -20,8 +20,7 @@ defmodule WebsiteWeb.Resolvers.Posts do
   end
 
   def add_post(_, %{title: title, content: content}, %{context: %{current_user: current_user}}) do
-    Website.Posts.create_post(%{
-      user_id: current_user.id,
+    Website.Posts.create_post(current_user, %{
       title: title,
       slug: slugify(title, separator: ?_, lowercase: true),
       content: content
